@@ -631,6 +631,185 @@
     .dc-ico svg { width: 30px; height: 30px; }
     .dc-ico { width: 56px; height: 56px; border-radius: 18px; flex: 0 0 auto; display: flex; align-items: center;
       justify-content: center; background: rgba(0, 0, 0, .25); }
+
+    /* ================= оформление: стеклянный тёмный стиль с неоном ================= */
+    body {
+      background:
+        radial-gradient(900px 520px at 0% -10%, rgba(139, 92, 246, .28), transparent 60%),
+        radial-gradient(700px 460px at 105% 8%, rgba(236, 72, 153, .20), transparent 60%),
+        radial-gradient(800px 500px at 50% 110%, rgba(34, 211, 238, .14), transparent 60%),
+        #0a0a14;
+    }
+    .screen.active { animation: screenIn .45s cubic-bezier(.2, .8, .2, 1); }
+    @keyframes screenIn { from { opacity: 0; transform: translateY(14px) scale(.99); } to { opacity: 1; transform: none; } }
+
+    .hero h1 {
+      background: linear-gradient(90deg, #ffffff, #c4b5fd 45%, #f9a8d4);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: none; filter: drop-shadow(0 0 18px rgba(139, 92, 246, .35));
+    }
+    .avatar { box-shadow: 0 0 0 1px rgba(255, 255, 255, .08), 0 12px 34px rgba(139, 92, 246, .45); }
+    .stat, .stats .stat {
+      background: linear-gradient(160deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .09);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .06);
+    }
+    .stat b { background: linear-gradient(90deg, #fff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    .daily-card {
+      background: linear-gradient(135deg, #7c3aed, #db2777) !important;
+      box-shadow: 0 16px 44px rgba(124, 58, 237, .45), inset 0 1px 0 rgba(255, 255, 255, .18);
+      border: 1px solid rgba(255, 255, 255, .12);
+    }
+    .daily-card:active { transform: scale(.985); }
+    .quest-strip {
+      background: linear-gradient(90deg, rgba(139, 92, 246, .22), rgba(236, 72, 153, .14));
+      border: 1px solid rgba(196, 181, 253, .28);
+      box-shadow: 0 10px 28px rgba(139, 92, 246, .18);
+    }
+    .quest-strip:active { transform: scale(.99); }
+
+    .chips { gap: 9px; }
+    .chip {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .10);
+      transition: transform .15s, background .2s, color .2s;
+    }
+    .chip:active { transform: scale(.95); }
+    .chip.on {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      box-shadow: 0 6px 18px rgba(139, 92, 246, .4);
+    }
+
+    .gcard {
+      background: linear-gradient(170deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .09);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .32), inset 0 1px 0 rgba(255, 255, 255, .05);
+      transition: transform .18s cubic-bezier(.2, .8, .2, 1), border-color .25s, box-shadow .25s;
+    }
+    .gcard:active { transform: scale(.96); border-color: rgba(196, 181, 253, .45); box-shadow: 0 6px 22px rgba(139, 92, 246, .25); }
+    .gi { border: 1px solid rgba(255, 255, 255, .18); }
+    .gcard h3 { font-size: 15.5px; letter-spacing: .1px; }
+    .gcard p { color: #9d9fc8; }
+    .hb { color: #67e8f9; text-shadow: 0 0 12px rgba(34, 211, 238, .25); }
+    .star { background: rgba(255, 255, 255, .06); transition: transform .2s, background .2s; }
+    .star:active { transform: scale(.85); }
+    .star.on { text-shadow: 0 0 12px rgba(251, 191, 36, .6); }
+
+    .btn {
+      background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 55%, #ec4899 100%);
+      box-shadow: 0 12px 28px rgba(139, 92, 246, .42), inset 0 1px 0 rgba(255, 255, 255, .22);
+      letter-spacing: .2px; transition: transform .12s, box-shadow .2s, opacity .2s;
+    }
+    .btn:active { transform: scale(.975); box-shadow: 0 6px 16px rgba(139, 92, 246, .35); }
+    .btn.ghost {
+      background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); box-shadow: none;
+    }
+    .tool {
+      background: linear-gradient(160deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .10);
+      transition: transform .12s, border-color .2s;
+    }
+    .tool:active { transform: scale(.96); border-color: rgba(196, 181, 253, .4); }
+
+    .lvl-num { box-shadow: 0 0 0 4px rgba(139, 92, 246, .18), 0 14px 30px rgba(139, 92, 246, .45); }
+    .lvlcard {
+      background: linear-gradient(160deg, rgba(139, 92, 246, .18), rgba(255, 255, 255, .03));
+      border: 1px solid rgba(196, 181, 253, .18);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .3);
+    }
+    .xpbar { background: rgba(255, 255, 255, .08); }
+    .xpbar i { background: linear-gradient(90deg, #8b5cf6, #ec4899, #22d3ee); box-shadow: 0 0 14px rgba(236, 72, 153, .5); }
+
+    .card {
+      background: linear-gradient(170deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .09);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .28);
+    }
+    .vid { background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .09); transition: transform .15s, border-color .2s; }
+    .vid:active { transform: scale(.98); border-color: rgba(196, 181, 253, .4); }
+
+    .tabbar {
+      background: rgba(20, 20, 38, .72) !important;
+      border: 1px solid rgba(255, 255, 255, .10) !important;
+      box-shadow: 0 18px 46px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .06) !important;
+    }
+    .tabbar button { transition: background .25s, color .25s, transform .15s; }
+    .tabbar button:active { transform: scale(.94); }
+    .tabbar button.active { background: linear-gradient(135deg, rgba(139, 92, 246, .35), rgba(236, 72, 153, .25)) !important; box-shadow: inset 0 -2px 0 #c4b5fd; }
+
+    .ghead h2 { background: linear-gradient(90deg, #ffffff, #c4b5fd); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .iconbtn { background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .10); transition: transform .12s; }
+    .iconbtn:active { transform: scale(.92); }
+    .best { background: rgba(255, 255, 255, .05); border-radius: 999px; padding: 5px 10px; border: 1px solid rgba(255, 255, 255, .08); }
+    .panel {
+      background: linear-gradient(170deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(255, 255, 255, .10);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, .38), inset 0 1px 0 rgba(255, 255, 255, .05);
+    }
+    .gpill, .pill {
+      background: rgba(139, 92, 246, .16);
+      border: 1px solid rgba(196, 181, 253, .22);
+      color: #e9e5ff;
+    }
+    .opt { background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .09); }
+    .opt:active { transform: scale(.97); }
+    .hint { color: #6ee7b7; text-shadow: 0 0 14px rgba(52, 211, 153, .25); }
+
+    .blob { box-shadow: 0 16px 46px rgba(139, 92, 246, .5), inset 0 2px 0 rgba(255, 255, 255, .25); }
+    .tile, .tc, .key, .c48 { transition: transform .12s, background .2s; }
+    .tc { border: 1px solid rgba(255, 255, 255, .06); }
+    .tc.X { text-shadow: 0 0 16px rgba(249, 168, 212, .6); }
+    .tc.O { text-shadow: 0 0 16px rgba(52, 211, 153, .6); }
+    .mcard .fb { box-shadow: 0 0 24px rgba(139, 92, 246, .35); }
+
+    .toast {
+      background: rgba(22, 22, 40, .9) !important;
+      border: 1px solid rgba(196, 181, 253, .25);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .5), 0 0 24px rgba(139, 92, 246, .25);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* ================= мессенджер: заглушка «В разработке» ================= */
+    .dev-card {
+      position: relative; overflow: hidden; text-align: center; margin-top: 12px;
+      padding: 34px 20px 28px; border-radius: 28px;
+      background: linear-gradient(170deg, rgba(139, 92, 246, .22), rgba(255, 255, 255, .03));
+      border: 1px solid rgba(196, 181, 253, .22);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .06);
+    }
+    .dev-card::before {
+      content: ''; position: absolute; inset: -40% -20% auto; height: 160px; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(236, 72, 153, .35), transparent);
+      animation: devGlow 5s ease-in-out infinite alternate;
+    }
+    @keyframes devGlow { from { transform: translateX(-12%); opacity: .6; } to { transform: translateX(12%); opacity: 1; } }
+    .dev-icon {
+      position: relative; font-size: 46px; line-height: 1; margin-bottom: 14px;
+      animation: devFloat 3.2s ease-in-out infinite;
+    }
+    @keyframes devFloat { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-8px) rotate(4deg); } }
+    .dev-title {
+      position: relative; font: 900 22px Unbounded, sans-serif; letter-spacing: .04em;
+      background: linear-gradient(90deg, #ffffff, #c4b5fd, #f9a8d4, #ffffff);
+      background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+      animation: devShine 4s linear infinite;
+    }
+    @keyframes devShine { to { background-position: 200% center; } }
+    .dots i {
+      display: inline-block; font-style: normal; animation: devDot 1.2s ease-in-out infinite;
+    }
+    .dots i:nth-child(2) { animation-delay: .2s; }
+    .dots i:nth-child(3) { animation-delay: .4s; }
+    @keyframes devDot { 0%, 60%, 100% { opacity: .25; } 30% { opacity: 1; } }
+    .dev-text { position: relative; margin: 12px 0 18px; color: #a5a8d6; font-size: 14px; line-height: 1.5; font-weight: 600; }
+    .dev-bar { position: relative; height: 6px; border-radius: 99px; background: rgba(255, 255, 255, .08); overflow: hidden; }
+    .dev-bar i {
+      position: absolute; top: 0; bottom: 0; left: -40%; width: 40%; border-radius: 99px;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899, #22d3ee);
+      animation: devLoad 1.8s ease-in-out infinite;
+    }
+    @keyframes devLoad { from { left: -40%; } to { left: 100%; } }
   </style>
 </head>
 <body>
@@ -721,6 +900,17 @@
     <button class="btn ghost" id="resetBtn">🗑 Сбросить прогресс</button>
   </section>
 
+  <!-- ===================== МЕССЕНДЖЕР (в разработке) ===================== -->
+  <section id="tab-chat" class="screen">
+    <h2 class="title2">Мессенджер</h2>
+    <div class="dev-card">
+      <div class="dev-icon">🛠</div>
+      <div class="dev-title">В РАЗРАБОТКЕ<span class="dots"><i>.</i><i>.</i><i>.</i></span></div>
+      <p class="dev-text">Скоро здесь вы можете общаться со своими друзьями.</p>
+      <div class="dev-bar"><i></i></div>
+    </div>
+  </section>
+
   <!-- ===================== ЭКРАН ИГРЫ ===================== -->
   <section id="view-game" class="screen">
     <div class="ghead">
@@ -735,6 +925,7 @@
     <button data-tab="home" class="active"><span class="i">🎮</span>Игры</button>
     <button data-tab="video"><span class="i">📺</span>Видео</button>
     <button data-tab="profile"><span class="i">👤</span>Профиль</button>
+    <button data-tab="chat"><span class="i">💬</span>Чат</button>
   </nav>
 
 
@@ -749,6 +940,9 @@
       BOT_LINK: 'https://t.me/weneik88_bot',
       VIDEO_COUNT: 6,
       MANUAL_VIDEOS: [],
+      // Адрес API бота с HTTPS, например https://bot.example.com
+      // Пока пусто, XP хранится только в телефоне.
+      API_URL: '',
     };
 
     // Вопросы для викторины про канал. Добавь свои вопросы по видео:
@@ -930,6 +1124,7 @@
       q.claimed.push(id);
       store.set('quests', q);
       addXp(def.reward, false);
+      syncQuest(id);
       const after = levelOf(getXp());
       toast('🎁 +' + def.reward + ' XP' + (after > before ? ' · новый уровень ' + after + '!' : ''));
       if (after > before) confetti(50);
@@ -955,6 +1150,7 @@
           const gain = addXp(planned, true);
           if (gain) bumpQuest('xp', gain);
           if (rec) bumpQuest('records');
+          syncGame(g.id, planned);
 
           const after = levelOf(getXp());
           $('gBest').textContent = fmt(g, getBest(g));
@@ -2225,9 +2421,51 @@
     // ==================================================================
     //  Старт
     // ==================================================================
+    // ==================================================================
+    //  Общий XP с ботом (работает, когда задан CONFIG.API_URL)
+    // ==================================================================
+    async function apiCall(path, body) {
+      if (!CONFIG.API_URL) return null;
+      try {
+        const r = await fetch(CONFIG.API_URL + path, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.assign({}, body, { initData: tg && tg.initData ? tg.initData : '' })),
+        });
+        if (!r.ok) return null;
+        return await r.json();
+      } catch (e) {
+        return null;
+      }
+    }
+    function syncGame(id, amount) {
+      if (!CONFIG.API_URL || amount <= 0) return;
+      apiCall('/api/xp', { kind: 'game', amount: amount, game: id }).then(r => {
+        if (r && typeof r.xp === 'number') { store.set('xp', r.xp); renderAll(); }
+      });
+    }
+    function syncQuest(id) {
+      if (!CONFIG.API_URL) return;
+      apiCall('/api/xp', { kind: 'quest', quest: id }).then(r => {
+        if (r && typeof r.xp === 'number') { store.set('xp', r.xp); renderAll(); }
+      });
+    }
+    function syncMe() {
+      if (!CONFIG.API_URL) return;
+      apiCall('/api/me', {}).then(r => {
+        if (!r || typeof r.xp !== 'number') return;
+        store.set('xp', r.xp);
+        const q = questState();
+        q.claimed = [...new Set([...q.claimed, ...(r.quests_claimed || [])])];
+        store.set('quests', q);
+        renderAll();
+      });
+    }
+
     touchStreak();
     renderSound();
     initVideos();
+    syncMe();
     tab('home');
 
   </script>
