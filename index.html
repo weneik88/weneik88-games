@@ -788,7 +788,7 @@
       position: relative; font-size: 46px; line-height: 1; margin-bottom: 14px;
       animation: devFloat 3.2s ease-in-out infinite;
     }
-    @keyframes devFloat { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-8px) rotate(4deg); } }
+    @keyframes devFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
     .dev-title {
       position: relative; font: 900 22px Unbounded, sans-serif; letter-spacing: .04em;
       background: linear-gradient(90deg, #ffffff, #c4b5fd, #f9a8d4, #ffffff);
@@ -810,6 +810,38 @@
       animation: devLoad 1.8s ease-in-out infinite;
     }
     @keyframes devLoad { from { left: -40%; } to { left: 100%; } }
+
+    /* ===== исправления: карточки роликов и центрирование в «В разработке» ===== */
+    .vid {
+      flex-direction: column !important; align-items: stretch !important; gap: 10px !important;
+      padding: 10px !important;
+    }
+    .vid img {
+      width: 100% !important; height: auto !important; aspect-ratio: 16 / 9 !important;
+      object-fit: cover !important; flex: none !important; border-radius: 14px !important;
+    }
+    .vid b { display: block !important; width: 100% !important; font-size: 15px !important; line-height: 1.35 !important; text-align: left !important; padding: 0 4px 4px !important; }
+    .dev-card { text-align: center !important; }
+    .dev-icon, .dev-title, .dev-text { display: block !important; width: 100% !important; text-align: center !important; }
+    .dev-title { white-space: nowrap; }
+    .dev-bar { margin: 0 auto; }
+
+    /* ===== ролики: маленькая миниатюра слева, название справа ===== */
+    .vid {
+      display: flex !important; flex-direction: row !important; align-items: center !important;
+      gap: 12px !important; padding: 10px !important; width: 100% !important;
+    }
+    .vid img {
+      width: 128px !important; height: 72px !important; min-width: 128px !important;
+      aspect-ratio: auto !important; flex: 0 0 128px !important; object-fit: cover !important;
+      border-radius: 12px !important; display: block !important;
+    }
+    .vid b {
+      flex: 1 1 auto !important; min-width: 0 !important; width: auto !important;
+      font-size: 14px !important; line-height: 1.35 !important; text-align: left !important;
+      padding: 0 !important; overflow: hidden; display: -webkit-box !important;
+      -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    }
   </style>
 </head>
 <body>
@@ -904,9 +936,9 @@
   <section id="tab-chat" class="screen">
     <h2 class="title2">Мессенджер</h2>
     <div class="dev-card">
-      <div class="dev-icon">🛠</div>
+      <div class="dev-icon"><svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="url(#devGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="devGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#f9a8d4"/></linearGradient></defs><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></div>
       <div class="dev-title">В РАЗРАБОТКЕ<span class="dots"><i>.</i><i>.</i><i>.</i></span></div>
-      <p class="dev-text">Скоро здесь вы можете общаться со своими друзьями.</p>
+      <p class="dev-text">Скоро здесь вы сможете общаться со своими друзьями.</p>
       <div class="dev-bar"><i></i></div>
     </div>
   </section>
