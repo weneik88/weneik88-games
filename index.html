@@ -859,6 +859,18 @@
       font-size: 14px !important; line-height: 1.4 !important; text-align: center !important;
       padding: 0 6px !important; white-space: normal !important;
     }
+
+    /* ================= админка ================= */
+    .adm h3 { margin: 0 0 6px; font: 800 16px Unbounded, sans-serif; }
+    .adm input, .adm textarea {
+      width: 100%; box-sizing: border-box; margin-top: 8px; padding: 12px 14px; border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, .10); background: rgba(255, 255, 255, .05); color: var(--text);
+      font: 600 15px Inter, sans-serif; outline: none; resize: vertical;
+    }
+    .adm input:focus, .adm textarea:focus { border-color: rgba(196, 181, 253, .6); }
+    .adm .btn { margin-top: 10px; }
+    .adm .row2 { display: flex; gap: 10px; }
+    .adm .row2 .btn { flex: 1; }
   </style>
 </head>
 <body>
@@ -947,6 +959,7 @@
     </div>
     <button class="btn" id="subscribeBtn">▶ Подписаться на YouTube</button>
     <button class="btn ghost" id="resetBtn">🗑 Сбросить прогресс</button>
+    <button class="btn" id="adminOpen" style="--c:#f59e0b" hidden>🛠 Админка</button>
   </section>
 
   <!-- ===================== МЕССЕНДЖЕР (в разработке) ===================== -->
@@ -957,6 +970,78 @@
       <div class="dev-title">В РАЗРАБОТКЕ<span class="dots"><i>.</i><i>.</i><i>.</i></span></div>
       <p class="dev-text">Скоро здесь вы сможете общаться со своими друзьями.</p>
       <div class="dev-bar"><i></i></div>
+    </div>
+  </section>
+
+  <!-- ===================== АДМИНКА (только для админов) ===================== -->
+  <section id="tab-admin" class="screen">
+    <div class="ghead">
+      <button class="iconbtn" id="aBack" aria-label="Назад">←</button>
+      <h2>🛠 Админка</h2>
+    </div>
+    <p class="note">Действия уходят боту, а результат приходит сообщением в чат. Мини-апп закроется после отправки.</p>
+
+    <div class="card adm">
+      <h3>📊 Статистика</h3>
+      <button class="btn" id="aStats">Показать статистику и пользователей</button>
+    </div>
+
+    <div class="card adm">
+      <h3>📰 Новость</h3>
+      <textarea id="aNews" rows="3" placeholder="Текст новости"></textarea>
+      <button class="btn" id="aNewsGo">Опубликовать</button>
+    </div>
+
+    <div class="card adm">
+      <h3>📣 Рассылка</h3>
+      <textarea id="aBc" rows="3" placeholder="Текст рассылки всем пользователям"></textarea>
+      <button class="btn" id="aBcGo">Разослать всем</button>
+    </div>
+
+    <div class="card adm">
+      <h3>🎁 Розыгрыш</h3>
+      <input id="aPrize" placeholder="Приз, например: Промокод" maxlength="200" />
+      <input id="aWin" type="number" min="1" max="10" value="1" placeholder="Победителей (1–10)" />
+      <button class="btn" id="aGwNew">Запустить розыгрыш</button>
+      <div class="row2">
+        <button class="btn ghost" id="aGwDraw">Провести</button>
+        <button class="btn ghost" id="aGwCancel">Отменить</button>
+      </div>
+    </div>
+
+    <div class="card adm">
+      <h3>🎞 Дата видео</h3>
+      <input id="aVideo" placeholder="25.10.2026 20:00 Название" />
+      <div class="row2">
+        <button class="btn" id="aVideoGo">Сохранить</button>
+        <button class="btn ghost" id="aVideoClear">Убрать</button>
+      </div>
+    </div>
+
+    <div class="card adm">
+      <h3>✨ Начислить XP</h3>
+      <input id="aXpId" type="number" placeholder="ID пользователя" />
+      <input id="aXpAmt" type="number" placeholder="Очки (от -1000 до 1000)" />
+      <button class="btn" id="aXpGo">Начислить</button>
+    </div>
+
+    <div class="card adm">
+      <h3>🏷 Роль</h3>
+      <input id="aRoleId" type="number" placeholder="ID пользователя" />
+      <input id="aRoleName" placeholder="Название роли, например: weneik88" maxlength="30" />
+      <div class="row2">
+        <button class="btn" id="aRoleGo">Выдать роль</button>
+        <button class="btn ghost" id="aRoleDel">Убрать</button>
+      </div>
+    </div>
+
+    <div class="card adm">
+      <h3>🚫 Блокировка</h3>
+      <input id="aBanId" type="number" placeholder="ID пользователя" />
+      <div class="row2">
+        <button class="btn" id="aBan">Заблокировать</button>
+        <button class="btn ghost" id="aUnban">Разблокировать</button>
+      </div>
     </div>
   </section>
 
@@ -1112,9 +1197,9 @@
     //  чтобы нельзя было накрутить весь уровень за один вечер.
     // ==================================================================
     const DAILY_CAP = 200;                                  // XP за игры в день
-    const LEVELS = [0, 100, 250, 500, 850, 1300, 1900, 2700, 3700, 5000];
+    const LEVELS = [0, 100, 250, 500, 850, 1300, 1900, 2700, 3700, 5000, 100000];
     const TITLES = ['Новичок', 'Зритель', 'Подписчик', 'Фанат', 'Постоянный зритель',
-                    'Амбассадор', 'Соавтор', 'Легенда канала', 'Сказочный зритель', 'Легенда'];
+                    'Амбассадор', 'Соавтор', 'Легенда канала', 'Сказочный зритель', 'Легенда', 'weneik88'];
 
     const getXp = () => store.get('xp', 0);
     const levelOf = xp => LEVELS.filter(t => xp >= t).length;
@@ -2294,7 +2379,7 @@
       const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
       const info = levelInfo(getXp());
       $('pLevel').textContent = info.lv;
-      $('pTitle').textContent = info.title;
+      $('pTitle').textContent = store.get('role', null) || info.title;
       $('pXpText').textContent = info.next === null
         ? getXp() + ' XP · максимальный уровень'
         : getXp() + ' / ' + info.next + ' XP до уровня ' + (info.lv + 1);
@@ -2504,6 +2589,7 @@
       apiCall('/api/me', {}).then(r => {
         if (!r || typeof r.xp !== 'number') return;
         store.set('xp', r.xp);
+        store.set('role', r.role || null);
         const q = questState();
         q.claimed = [...new Set([...q.claimed, ...(r.quests_claimed || [])])];
         store.set('quests', q);
@@ -2511,11 +2597,67 @@
       });
     }
 
+    // ==================================================================
+    //  Админка в мини-аппе (показываем только админам; проверку делает бот)
+    // ==================================================================
+    const ADMIN_IDS = [8957082638, 169286911];
+    function isAdminUser() {
+      const u = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
+      return !!u && ADMIN_IDS.includes(u.id);
+    }
+    function sendAdmin(obj) {
+      const hint = 'Открой админку кнопкой «🛠 Админка» в чате';
+      if (!tg || !tg.sendData) { toast(hint); return; }
+      try { tg.sendData(JSON.stringify(obj)); }
+      catch (e) { toast(hint); }
+    }
+    const aVal = id => ($(id).value || '').trim();
+    function wireAdmin() {
+      $('adminOpen').onclick = () => tab('admin');
+      $('aBack').onclick = () => tab('profile');
+      $('aStats').onclick = () => sendAdmin({ act: 'stats' });
+      $('aNewsGo').onclick = () => {
+        const t = aVal('aNews');
+        if (!t) return toast('Напиши текст новости');
+        sendAdmin({ act: 'news', text: t });
+      };
+      $('aBcGo').onclick = () => {
+        const t = aVal('aBc');
+        if (!t) return toast('Напиши текст рассылки');
+        sendAdmin({ act: 'broadcast', text: t });
+      };
+      $('aGwNew').onclick = () => {
+        const prize = aVal('aPrize');
+        if (!prize) return toast('Укажи приз');
+        sendAdmin({ act: 'giveaway_new', prize: prize, winners: Number($('aWin').value) || 1 });
+      };
+      $('aGwDraw').onclick = () => sendAdmin({ act: 'giveaway_draw' });
+      $('aGwCancel').onclick = () => sendAdmin({ act: 'giveaway_cancel' });
+      $('aVideoGo').onclick = () => {
+        const v = aVal('aVideo');
+        if (!v) return toast('Укажи дату: ДД.ММ.ГГГГ ЧЧ:ММ Название');
+        sendAdmin({ act: 'video', value: v });
+      };
+      $('aVideoClear').onclick = () => sendAdmin({ act: 'video', value: '-' });
+      $('aXpGo').onclick = () => sendAdmin({ act: 'givexp', id: aVal('aXpId'), amount: Number($('aXpAmt').value) });
+      $('aBan').onclick = () => sendAdmin({ act: 'ban', id: aVal('aBanId') });
+      $('aUnban').onclick = () => sendAdmin({ act: 'unban', id: aVal('aBanId') });
+      $('aRoleGo').onclick = () => {
+        const name = aVal('aRoleName');
+        if (!name) return toast('Напиши название роли');
+        sendAdmin({ act: 'role', id: aVal('aRoleId'), value: name });
+      };
+      $('aRoleDel').onclick = () => sendAdmin({ act: 'role', id: aVal('aRoleId'), value: '' });
+    }
+
     touchStreak();
     renderSound();
     initVideos();
     syncMe();
-    tab('home');
+    wireAdmin();
+    if (isAdminUser()) $('adminOpen').hidden = false;
+    if (isAdminUser() && new URLSearchParams(location.search).get('admin') === '1') tab('admin');
+    else tab('home');
 
   </script>
 </body>
